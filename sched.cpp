@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include "boost/date_time/gregorian/gregorian_types.hpp"
 using namespace std;
 
 int main()
@@ -32,7 +33,12 @@ int main()
     }
   readTimeFile.close();
 
-  cout << "End\n"<<endl;
+  boost::gregorian::date startDate(2015, boost::gregorian::Sep, 15);
+  boost::gregorian::date today(boost::gregorian::day_clock::local_day());
+  int dayDiff = (today - startDate).days();
+  cout << dayDiff << endl;
+
+  cout << "End\n" << endl;
   
   return 0;
 }
