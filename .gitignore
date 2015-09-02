@@ -28,4 +28,7 @@
 *.app
 sched
 
+.DS_Store
+
 colors.txt
+times.txt
