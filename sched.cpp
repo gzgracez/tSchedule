@@ -4,17 +4,17 @@
 #include <sstream>
 using namespace std;
 
-main()
+int main()
 {
   //ostringstream ss;
-  string colors[6][7];
+  string colors[6][8];
   ifstream readFile;
   readFile.open("colors.txt");
   int count = 0;
-  while(!readFile.eof() && count/7<6)
+  while(!readFile.eof() && count/8<6)
     {
-      getline(readFile, colors[count/7][count%7]);
-      cout << count/7 << ", " << count%7 << ": " << colors[count/7][count%7] << "\n" <<endl;
+      getline(readFile, colors[count/8][count%8]);
+      cout << count/8 << ", " << count%8 << ": " << colors[count/8][count%8] << "\n" <<endl;
       count++;
     }
   readFile.close();
