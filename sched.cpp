@@ -40,18 +40,18 @@ int main()
   // cout << dayDiff << endl;
   // cout << today.day_of_week() << endl;
 
-			if (startDate.day_of_week() == 0 || startDate.day_of_week() == 6)
-				{
-					cout << "Weekend!" << endl;
-				}
-			else 
-				{
-					for (int i=0; i<8; i++)
-						{
-							// cout << times[today.day_of_week()-1][]
-						}
-				}
-
+  if (startDate.day_of_week() == 0 || startDate.day_of_week() == 6)
+    {
+      cout << "Weekend!" << endl;
+    }
+  else 
+    {
+      for (int i=0; i<8; i++)
+	{
+	  // cout << times[today.day_of_week()-1][]
+	}
+    }
+  
   cout << "End\n" << endl;
   
   return 0;
