@@ -4,6 +4,16 @@
 #include "boost/date_time/gregorian/gregorian_types.hpp"
 using namespace std;
 
+int weekdayDifference(boost::gregorian::date start, boost::gregorian::date end)
+{
+    int count = 0;
+    for (boost::gregorian::day_iterator iter=start; iter!=end; ++iter)
+      {
+        if (iter->day_of_week() != 0 && iter->day_of_week() != 6) count++;
+      }
+    return count;
+}
+
 int main()
 {
   // colors
@@ -34,9 +44,11 @@ int main()
 
   // date
   // boost::gregorian::date startDate(2015, boost::gregorian::Sep, 15);
-  boost::gregorian::date startDate(2015, boost::gregorian::Sep, 2);
-  boost::gregorian::date today(boost::gregorian::day_clock::local_day());
-  int dayDiff = (today - startDate).days();
+  boost::gregorian::date startDate(2015, boost::gregorian::Sep, 15);
+  // boost::gregorian::date today(boost::gregorian::day_clock::local_day());
+  boost::gregorian::date today(2015, boost::gregorian::Sep,22);
+  int dayDiff = weekdayDifference(startDate, today);
+  // int dayDiff = (today - startDate).days();
   // cout << dayDiff << endl;
   // cout << today.day_of_week() << endl;
 
