@@ -47,12 +47,19 @@ int main()
   else 
     {
       for (int i=0; i<8; i++)
-	{
-	  // cout << times[today.day_of_week()-1][]
-	}
+      	{
+          if (i == 0)
+            {
+              cout << colors[dayDiff%6][i] << endl;
+            }
+          else 
+            {
+              cout << times[today.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << endl;
+            }
+      	}
     }
   
-  cout << "End\n" << endl;
+  cout << "Yay!" << endl;
   
   return 0;
 }
