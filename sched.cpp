@@ -4,6 +4,59 @@
 #include "boost/date_time/gregorian/gregorian_types.hpp"
 using namespace std;
 
+bool noSchool(boost::gregorian::date day, bool colors)
+  {
+    if (
+         (day) ==  boost::gregorian::date(2015, boost::gregorian::Sep, 23)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Oct, 6) //trip day
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Oct, 12)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Oct, 13)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Oct, 14) //PSAT
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Nov, 6)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Nov, 26)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Nov, 27)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 18)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 19)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 20)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 21)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 22)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 23)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 24)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 25)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 26)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 27)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 28)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 29)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 30)
+      || (day) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 31)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::Jan, 1)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::Jan, 18)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::Feb, 15)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 21)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 22)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 23)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 24)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 25)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 26)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 27)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 28)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 29)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 30)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 31)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::Apr, 1)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::Apr, 8)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::May, 20)
+      || (day) ==  boost::gregorian::date(2016, boost::gregorian::May, 30)
+    ) return true;
+    if (colors)
+      {
+        if ((day) ==  boost::gregorian::date(2015, boost::gregorian::Nov, 24))//Yellow Day 1
+          return true;
+        else return false;
+      }
+    else return false;
+  }
+
 int weekdayDifference(boost::gregorian::date start, boost::gregorian::date end)
 {
     int count = 0;
@@ -11,46 +64,7 @@ int weekdayDifference(boost::gregorian::date start, boost::gregorian::date end)
       {
         if (iter->day_of_week() != 0 && iter->day_of_week() != 6) 
           {
-            if (
-                 (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Sep, 23)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Oct, 12)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Oct, 13)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Nov, 6)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Nov, 26)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Nov, 27)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 17)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 18)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 19)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 20)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 21)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 22)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 23)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 24)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 25)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 26)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 27)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 28)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 29)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 30)
-              || (*iter) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 31)
-              || (*iter) ==  boost::gregorian::date(2016, boost::gregorian::Jan, 1)
-              || (*iter) ==  boost::gregorian::date(2016, boost::gregorian::Jan, 18)
-              || (*iter) ==  boost::gregorian::date(2016, boost::gregorian::Feb, 15)
-              || (*iter) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 21)
-              || (*iter) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 22)
-              || (*iter) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 23)
-              || (*iter) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 24)
-              || (*iter) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 25)
-              || (*iter) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 26)
-              || (*iter) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 27)
-              || (*iter) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 28)
-              || (*iter) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 29)
-              || (*iter) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 30)
-              || (*iter) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 31)
-              || (*iter) ==  boost::gregorian::date(2016, boost::gregorian::Apr, 1)
-              || (*iter) ==  boost::gregorian::date(2016, boost::gregorian::Apr, 8)
-              || (*iter) ==  boost::gregorian::date(2016, boost::gregorian::May, 20)
-            )
+            if (noSchool(*iter,true))
               {
                 // cout << "No School" << endl;
               }
@@ -92,7 +106,7 @@ int main(int argc, char *argv[])
   // boost::gregorian::date startDate(2015, boost::gregorian::Sep, 15);
   boost::gregorian::date startDate(2015, boost::gregorian::Sep, 15);
   // boost::gregorian::date today(boost::gregorian::day_clock::local_day());
-  boost::gregorian::date today(2015, boost::gregorian::Oct, 11);
+  boost::gregorian::date today(2016, boost::gregorian::Jun, 3);
   int dayDiff = weekdayDifference(startDate, today);
   // int dayDiff = (today - startDate).days();
   // cout << dayDiff << endl;
@@ -102,46 +116,7 @@ int main(int argc, char *argv[])
     {
       cout << "Weekend!" << endl;
     }
-  else if (
-       (today) ==  boost::gregorian::date(2015, boost::gregorian::Sep, 23)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Oct, 12)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Oct, 13)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Nov, 6)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Nov, 26)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Nov, 27)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 17)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 18)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 19)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 20)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 21)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 22)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 23)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 24)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 25)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 26)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 27)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 28)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 29)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 30)
-    || (today) ==  boost::gregorian::date(2015, boost::gregorian::Dec, 31)
-    || (today) ==  boost::gregorian::date(2016, boost::gregorian::Jan, 1)
-    || (today) ==  boost::gregorian::date(2016, boost::gregorian::Jan, 18)
-    || (today) ==  boost::gregorian::date(2016, boost::gregorian::Feb, 15)
-    || (today) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 21)
-    || (today) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 22)
-    || (today) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 23)
-    || (today) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 24)
-    || (today) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 25)
-    || (today) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 26)
-    || (today) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 27)
-    || (today) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 28)
-    || (today) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 29)
-    || (today) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 30)
-    || (today) ==  boost::gregorian::date(2016, boost::gregorian::Mar, 31)
-    || (today) ==  boost::gregorian::date(2016, boost::gregorian::Apr, 1)
-    || (today) ==  boost::gregorian::date(2016, boost::gregorian::Apr, 8)
-    || (today) ==  boost::gregorian::date(2016, boost::gregorian::May, 20)
-  )
+  else if (noSchool(today,false))
     {
       cout << "No School" << " " << today.month() << "/" << today.day() << "/" <<today.year() << endl;
     }
