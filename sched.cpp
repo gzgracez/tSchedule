@@ -92,13 +92,13 @@ int main(int argc, char *argv[])
   // boost::gregorian::date startDate(2015, boost::gregorian::Sep, 15);
   boost::gregorian::date startDate(2015, boost::gregorian::Sep, 15);
   // boost::gregorian::date today(boost::gregorian::day_clock::local_day());
-  boost::gregorian::date today(2015, boost::gregorian::Sep, 23);
+  boost::gregorian::date today(2015, boost::gregorian::Oct, 11);
   int dayDiff = weekdayDifference(startDate, today);
   // int dayDiff = (today - startDate).days();
   // cout << dayDiff << endl;
   // cout << today.day_of_week() << endl;
 
-  if (startDate.day_of_week() == 0 || startDate.day_of_week() == 6)
+  if (today.day_of_week() == 0 || today.day_of_week() == 6)
     {
       cout << "Weekend!" << endl;
     }
@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
       	}
     }
   
-  cout << "Yay!" << endl;
+  // cout << "Yay!" << endl;
   
   return 0;
 }
