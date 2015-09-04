@@ -59,19 +59,24 @@ bool noSchool(boost::gregorian::date day, bool colors)
 
 int weekdayDifference(boost::gregorian::date start, boost::gregorian::date end)
 {
-    int count = 0;
-    for (boost::gregorian::day_iterator iter=start; iter!=end; ++iter)
-      {
-        if (iter->day_of_week() != 0 && iter->day_of_week() != 6) 
-          {
-            if (noSchool(*iter,true))
-              {
-                // cout << "No School" << endl;
-              }
-            else count++;
-          }
-      }
-    return count;
+  if (end < start) 
+    {
+      cout << "School has not started yet!" << endl;
+      return -1;
+    }
+  int count = 0;
+  for (boost::gregorian::day_iterator iter=start; iter!=end; ++iter)
+    {
+      if (iter->day_of_week() != 0 && iter->day_of_week() != 6) 
+        {
+          if (noSchool(*iter,true))
+            {
+              // cout << "No School" << endl;
+            }
+          else count++;
+        }
+    }
+  return count;
 }
 
 int main(int argc, char *argv[])
@@ -105,36 +110,37 @@ int main(int argc, char *argv[])
   // date
   // boost::gregorian::date startDate(2015, boost::gregorian::Sep, 15);
   boost::gregorian::date startDate(2015, boost::gregorian::Sep, 15);
-  // boost::gregorian::date today(boost::gregorian::day_clock::local_day());
-  boost::gregorian::date today(2016, boost::gregorian::Jun, 3);
+  boost::gregorian::date today(boost::gregorian::day_clock::local_day());
+  // boost::gregorian::date today(2016, boost::gregorian::Jun, 3);
   int dayDiff = weekdayDifference(startDate, today);
   // int dayDiff = (today - startDate).days();
-  // cout << dayDiff << endl;
   // cout << today.day_of_week() << endl;
-
-  if (today.day_of_week() == 0 || today.day_of_week() == 6)
-    {
-      cout << "Weekend!" << endl;
-    }
-  else if (noSchool(today,false))
-    {
-      cout << "No School" << " " << today.month() << "/" << today.day() << "/" <<today.year() << endl;
-    }
-  else 
-    {
-      for (int i=0; i<8; i++)
-      	{
-          if (i == 0)
-            {
-              cout << colors[dayDiff%6][i] << " " << today.month() << "/" << today.day() << "/" <<today.year() << endl;
-            }
-          else 
-            {
-              cout << times[today.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << endl;
-            }
-      	}
-    }
   
+  if (dayDiff >= 0)
+    {
+      if (today.day_of_week() == 0 || today.day_of_week() == 6)
+        {
+          cout << "Weekend!" << endl;
+        }
+      else if (noSchool(today,false))
+        {
+          cout << "No School" << " " << today.month() << "/" << today.day() << "/" <<today.year() << endl;
+        }
+      else 
+        {
+          for (int i=0; i<8; i++)
+          	{
+              if (i == 0)
+                {
+                  cout << colors[dayDiff%6][i] << " " << today.month() << "/" << today.day() << "/" <<today.year() << endl;
+                }
+              else 
+                {
+                  cout << times[today.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << endl;
+                }
+          	}
+        }
+    }
   // cout << "Yay!" << endl;
   
   return 0;
