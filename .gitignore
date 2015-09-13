@@ -31,4 +31,6 @@ sched
 .DS_Store
 
 colors.txt
+colorsp.txt
 times.txt
+rooms.txt
