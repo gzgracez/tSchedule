@@ -99,18 +99,18 @@ int main(int argc, char *argv[])
   string rooms[6][8];
   ifstream readRoomFile;
   if (showRooms)
-  	{
-		  readRoomFile.open("rooms.txt");
-		  int rCount = 0;
-		  while(!readRoomFile.eof() && rCount/8<6)
-		    {
-		      getline(readRoomFile, rooms[rCount/8][rCount%8]);
-		      // cout << rCount/8 << ", " << rCount%8 << ": " << rooms[rCount/8][rCount%8] << "\n" <<endl;
-		      rCount++;
-		    }
-		  readRoomFile.close();
-  	}
-
+    {
+      readRoomFile.open("rooms.txt");
+      int rCount = 0;
+      while(!readRoomFile.eof() && rCount/8<6)
+	{
+	  getline(readRoomFile, rooms[rCount/8][rCount%8]);
+	  // cout << rCount/8 << ", " << rCount%8 << ": " << rooms[rCount/8][rCount%8] << "\n" <<endl;
+	  rCount++;
+	}
+      readRoomFile.close();
+    }
+  
   // times
   string times[5][8];
   ifstream readTimeFile;
@@ -146,26 +146,26 @@ int main(int argc, char *argv[])
       else 
         {
           for (int i=0; i<8; i++)
-          	{
+	    {
               if (i == 0)
                 {
                   cout << colors[dayDiff%6][i] << " " << today.month() << "/" << today.day() << "/" <<today.year() << endl;
                 }
               else 
                 {
-                	if (showRooms) 
-                		{
-                			if (rooms[dayDiff%6][i].length() == 0)
-		                  	cout << times[today.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << endl;
-		                	else 
-		                  	cout << times[today.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << ": " << rooms[dayDiff%6][i] << endl;
-                		}
-                	else
-                		{
-                			cout << times[today.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << endl;
-                		}
+		  if (showRooms) 
+		    {
+		      if (rooms[dayDiff%6][i].length() == 0)
+			cout << times[today.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << endl;
+		      else 
+			cout << times[today.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << ": " << rooms[dayDiff%6][i] << endl;
+		    }
+		  else
+		    {
+		      cout << times[today.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << endl;
+		    }
                 }
-          	}
+	    }
         }
     }
   // cout << "Yay!" << endl;
