@@ -79,9 +79,8 @@ int weekdayDifference(boost::gregorian::date start, boost::gregorian::date end)
   return count;
 }
 
-int main(int argc, char *argv[])
-{
-  // colors
+void printSchedule(boost::gregorian::date schedDate) {
+    // colors
   bool showRooms = true;
   string colors[6][8];
   ifstream readColorFile;
@@ -103,11 +102,11 @@ int main(int argc, char *argv[])
       readRoomFile.open("rooms.txt");
       int rCount = 0;
       while(!readRoomFile.eof() && rCount/8<6)
-	{
-	  getline(readRoomFile, rooms[rCount/8][rCount%8]);
-	  // cout << rCount/8 << ", " << rCount%8 << ": " << rooms[rCount/8][rCount%8] << "\n" <<endl;
-	  rCount++;
-	}
+  {
+    getline(readRoomFile, rooms[rCount/8][rCount%8]);
+    // cout << rCount/8 << ", " << rCount%8 << ": " << rooms[rCount/8][rCount%8] << "\n" <<endl;
+    rCount++;
+  }
       readRoomFile.close();
     }
   
@@ -124,51 +123,69 @@ int main(int argc, char *argv[])
     }
   readTimeFile.close();
 
-  // date
-  // boost::gregorian::date startDate(2015, boost::gregorian::Sep, 15);
   boost::gregorian::date startDate(2015, boost::gregorian::Sep, 15);
-  boost::gregorian::date today(boost::gregorian::day_clock::local_day());
-  // boost::gregorian::date today(2015, boost::gregorian::Sep, 15);
-  int dayDiff = weekdayDifference(startDate, today);
-  // int dayDiff = (today - startDate).days();
-  // cout << today.day_of_week() << endl;
+  int dayDiff = weekdayDifference(startDate, schedDate);
+  // int dayDiff = (schedDate - startDate).days();
+  // cout << schedDate.day_of_week() << endl;
   
   if (dayDiff >= 0)
     {
-      if (today.day_of_week() == 0 || today.day_of_week() == 6)
+      if (schedDate.day_of_week() == 0 || schedDate.day_of_week() == 6)
         {
           cout << "Weekend!" << endl;
         }
-      else if (noSchool(today,false))
+      else if (noSchool(schedDate,false))
         {
-          cout << "No School" << " " << today.month() << "/" << today.day() << "/" <<today.year() << endl;
+          cout << "No School" << " " << schedDate.month() << "/" << schedDate.day() << "/" <<schedDate.year() << endl;
         }
       else 
         {
           for (int i=0; i<8; i++)
-	    {
+      {
               if (i == 0)
                 {
-                  cout << colors[dayDiff%6][i] << " " << today.month() << "/" << today.day() << "/" <<today.year() << endl;
+                  cout << colors[dayDiff%6][i] << " " << schedDate.month() << "/" << schedDate.day() << "/" <<schedDate.year() << endl;
                 }
               else 
                 {
-		  if (showRooms) 
-		    {
-		      if (rooms[dayDiff%6][i].length() == 0)
-			cout << times[today.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << endl;
-		      else 
-			cout << times[today.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << ": " << rooms[dayDiff%6][i] << endl;
-		    }
-		  else
-		    {
-		      cout << times[today.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << endl;
-		    }
+      if (showRooms) 
+        {
+          if (rooms[dayDiff%6][i].length() == 0)
+      cout << times[schedDate.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << endl;
+          else 
+      cout << times[schedDate.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << ": " << rooms[dayDiff%6][i] << endl;
+        }
+      else
+        {
+          cout << times[schedDate.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << endl;
+        }
                 }
-	    }
+      }
         }
     }
   // cout << "Yay!" << endl;
-  
+}
+
+int main(int argc, char *argv[])
+{
+  // date
+  // boost::gregorian::date startDate(2015, boost::gregorian::Sep, 15);
+  boost::gregorian::date today(boost::gregorian::day_clock::local_day());
+  boost::gregorian::date tomorrow = today + boost::gregorian::date_duration(1);
+  // boost::gregorian::date today(2015, boost::gregorian::Sep, 15);
+  if (argc <= 1) {
+    printSchedule(today);
+  }
+  else if (argc == 2) {
+    if (strcmp(argv[1], "tomorrow") == 0) {
+      printSchedule(tomorrow);
+    }
+    else {
+      printSchedule(today);
+    }
+  }
+  else {
+    printSchedule(today);
+  }
   return 0;
 }
