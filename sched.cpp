@@ -180,6 +180,11 @@ int main(int argc, char *argv[])
     if (strcmp(argv[1], "tomorrow") == 0 || strcmp(argv[1], "tom") == 0) {
       printSchedule(tomorrow);
     }
+    else if (isdigit(*argv[1])) {
+      int temp = (int) *argv[1] - '0';
+      boost::gregorian::date newDate = today + boost::gregorian::date_duration(temp);
+      printSchedule(newDate);
+    }
     else {
       printSchedule(today);
     }
