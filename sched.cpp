@@ -177,7 +177,7 @@ int main(int argc, char *argv[])
     printSchedule(today);
   }
   else if (argc == 2) {
-    if (strcmp(argv[1], "tomorrow") == 0) {
+    if (strcmp(argv[1], "tomorrow") == 0 || strcmp(argv[1], "tom") == 0) {
       printSchedule(tomorrow);
     }
     else {
