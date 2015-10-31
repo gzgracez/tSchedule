@@ -5,9 +5,9 @@
 using namespace std;
 
 bool noSchool(boost::gregorian::date day, bool colors)
-  {
-    if (
-         (day) ==  boost::gregorian::date(2015, boost::gregorian::Sep, 23)
+{
+  if (
+      (day) ==  boost::gregorian::date(2015, boost::gregorian::Sep, 23)
       || (day) ==  boost::gregorian::date(2015, boost::gregorian::Oct, 6) //trip day
       || (day) ==  boost::gregorian::date(2015, boost::gregorian::Oct, 12)
       || (day) ==  boost::gregorian::date(2015, boost::gregorian::Oct, 13)
@@ -47,15 +47,15 @@ bool noSchool(boost::gregorian::date day, bool colors)
       || (day) ==  boost::gregorian::date(2016, boost::gregorian::Apr, 8)
       || (day) ==  boost::gregorian::date(2016, boost::gregorian::May, 20)
       || (day) ==  boost::gregorian::date(2016, boost::gregorian::May, 30)
-    ) return true;
-    if (colors)
-      {
-        if ((day) ==  boost::gregorian::date(2015, boost::gregorian::Nov, 24))//Yellow Day 1
-          return true;
-        else return false;
-      }
-    else return false;
-  }
+      ) return true;
+  if (colors)
+    {
+      if ((day) ==  boost::gregorian::date(2015, boost::gregorian::Nov, 24))//Yellow Day 1
+	return true;
+      else return false;
+    }
+  else return false;
+}
 
 int weekdayDifference(boost::gregorian::date start, boost::gregorian::date end)
 {
@@ -80,7 +80,7 @@ int weekdayDifference(boost::gregorian::date start, boost::gregorian::date end)
 }
 
 void printSchedule(boost::gregorian::date schedDate) {
-    // colors
+  // colors
   bool showRooms = true;
   string colors[6][8];
   ifstream readColorFile;
@@ -102,11 +102,11 @@ void printSchedule(boost::gregorian::date schedDate) {
       readRoomFile.open("rooms.txt");
       int rCount = 0;
       while(!readRoomFile.eof() && rCount/8<6)
-  {
-    getline(readRoomFile, rooms[rCount/8][rCount%8]);
-    // cout << rCount/8 << ", " << rCount%8 << ": " << rooms[rCount/8][rCount%8] << "\n" <<endl;
-    rCount++;
-  }
+	{
+	  getline(readRoomFile, rooms[rCount/8][rCount%8]);
+	  // cout << rCount/8 << ", " << rCount%8 << ": " << rooms[rCount/8][rCount%8] << "\n" <<endl;
+	  rCount++;
+	}
       readRoomFile.close();
     }
   
@@ -141,26 +141,26 @@ void printSchedule(boost::gregorian::date schedDate) {
       else 
         {
           for (int i=0; i<8; i++)
-      {
+	    {
               if (i == 0)
                 {
                   cout << colors[dayDiff%6][i] << " " << schedDate.month() << "/" << schedDate.day() << "/" <<schedDate.year() << endl;
                 }
               else 
                 {
-      if (showRooms) 
-        {
-          if (rooms[dayDiff%6][i].length() == 0)
-      cout << times[schedDate.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << endl;
-          else 
-      cout << times[schedDate.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << ": " << rooms[dayDiff%6][i] << endl;
-        }
-      else
-        {
-          cout << times[schedDate.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << endl;
-        }
+		  if (showRooms) 
+		    {
+		      if (rooms[dayDiff%6][i].length() == 0)
+			cout << times[schedDate.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << endl;
+		      else 
+			cout << times[schedDate.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << ": " << rooms[dayDiff%6][i] << endl;
+		    }
+		  else
+		    {
+		      cout << times[schedDate.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << endl;
+		    }
                 }
-      }
+	    }
         }
     }
   // cout << "Yay!" << endl;
