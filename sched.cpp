@@ -84,7 +84,7 @@ void printSchedule(boost::gregorian::date schedDate) {
   bool showRooms = true;
   string colors[6][8];
   ifstream readColorFile;
-  readColorFile.open("colors.txt");
+  readColorFile.open("schedules/colors.txt");
   int cCount = 0;
   while(!readColorFile.eof() && cCount/8<6)
     {
@@ -161,6 +161,93 @@ void printSchedule(boost::gregorian::date schedDate) {
 		    }
                 }
 	    }
+        }
+    }
+  // cout << "Yay!" << endl;
+}
+
+void printSchedule(boost::gregorian::date schedDate, string name) {
+  // colors
+  bool showRooms = true;
+  string colors[6][8];
+  ifstream readColorFile;
+  readColorFile.open(name + ".txt");
+  int cCount = 0;
+  while(!readColorFile.eof() && cCount/8<6)
+    {
+      getline(readColorFile, colors[cCount/8][cCount%8]);
+      // cout << cCount/8 << ", " << cCount%8 << ": " << colors[cCount/8][cCount%8] << "\n" <<endl;
+      cCount++;
+    }
+  readColorFile.close();
+
+  // classrooms
+  string rooms[6][8];
+  ifstream readRoomFile;
+  if (showRooms)
+    {
+      readRoomFile.open("rooms.txt");
+      int rCount = 0;
+      while(!readRoomFile.eof() && rCount/8<6)
+  {
+    getline(readRoomFile, rooms[rCount/8][rCount%8]);
+    // cout << rCount/8 << ", " << rCount%8 << ": " << rooms[rCount/8][rCount%8] << "\n" <<endl;
+    rCount++;
+  }
+      readRoomFile.close();
+    }
+  
+  // times
+  string times[5][8];
+  ifstream readTimeFile;
+  readTimeFile.open("times.txt");
+  int tCount = 0;
+  while(! readTimeFile.eof() && tCount/8<5)
+    {
+      getline(readTimeFile, times[tCount/8][tCount%8]);
+      // cout << tCount/8 << ", " << tCount%8 << ": " << times[tCount/8][tCount%8] << "\n" <<endl;
+      tCount++;
+    }
+  readTimeFile.close();
+
+  boost::gregorian::date startDate(2015, boost::gregorian::Sep, 15);
+  int dayDiff = weekdayDifference(startDate, schedDate);
+  // int dayDiff = (schedDate - startDate).days();
+  // cout << schedDate.day_of_week() << endl;
+  
+  if (dayDiff >= 0)
+    {
+      if (schedDate.day_of_week() == 0 || schedDate.day_of_week() == 6)
+        {
+          cout << "Weekend!" << endl;
+        }
+      else if (noSchool(schedDate,false))
+        {
+          cout << "No School" << " " << schedDate.month() << "/" << schedDate.day() << "/" <<schedDate.year() << endl;
+        }
+      else 
+        {
+          for (int i=0; i<8; i++)
+      {
+              if (i == 0)
+                {
+                  cout << colors[dayDiff%6][i] << " " << schedDate.month() << "/" << schedDate.day() << "/" <<schedDate.year() << endl;
+                }
+              else 
+                {
+      if (showRooms) 
+        {
+          if (rooms[dayDiff%6][i].length() == 0)
+      cout << times[schedDate.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << endl;
+          else 
+      cout << times[schedDate.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << ": " << rooms[dayDiff%6][i] << endl;
+        }
+      else
+        {
+          cout << times[schedDate.day_of_week()-1][i] << " " << colors[dayDiff%6][i] << endl;
+        }
+                }
+      }
         }
     }
   // cout << "Yay!" << endl;
