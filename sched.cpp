@@ -1,3 +1,5 @@
+// add colored text for schedule comparison 
+// cout << "\033[1;32mbold colored text\033[0m" << endl; 
 #include <iostream>
 #include <fstream>
 #include <string>
