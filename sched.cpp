@@ -99,7 +99,7 @@ void printSchedule(boost::gregorian::date schedDate) {
   ifstream readRoomFile;
   if (showRooms)
     {
-      readRoomFile.open("rooms.txt");
+      readRoomFile.open("schedules/rooms.txt");
       int rCount = 0;
       while(!readRoomFile.eof() && rCount/8<6)
 	{
@@ -166,17 +166,17 @@ void printSchedule(boost::gregorian::date schedDate) {
   // cout << "Yay!" << endl;
 }
 
+// print specific schedule
 void printSchedule(boost::gregorian::date schedDate, string name) {
   // colors
   bool showRooms = true;
   string colors[6][8];
   ifstream readColorFile;
-  readColorFile.open(name + ".txt");
+  readColorFile.open("schedules/" + name + ".txt");
   int cCount = 0;
   while(!readColorFile.eof() && cCount/8<6)
     {
       getline(readColorFile, colors[cCount/8][cCount%8]);
-      // cout << cCount/8 << ", " << cCount%8 << ": " << colors[cCount/8][cCount%8] << "\n" <<endl;
       cCount++;
     }
   readColorFile.close();
@@ -186,12 +186,11 @@ void printSchedule(boost::gregorian::date schedDate, string name) {
   ifstream readRoomFile;
   if (showRooms)
     {
-      readRoomFile.open("rooms.txt");
+      readRoomFile.open("schedules/" + name + "rooms.txt");
       int rCount = 0;
       while(!readRoomFile.eof() && rCount/8<6)
   {
     getline(readRoomFile, rooms[rCount/8][rCount%8]);
-    // cout << rCount/8 << ", " << rCount%8 << ": " << rooms[rCount/8][rCount%8] << "\n" <<endl;
     rCount++;
   }
       readRoomFile.close();
@@ -273,7 +272,19 @@ int main(int argc, char *argv[])
       printSchedule(newDate);
     }
     else {
-      printSchedule(today);
+      printSchedule(today, argv[1]);
+    }
+  }
+  else if (argc == 3) {
+    if (isdigit(*argv[2])) {
+      int temp = (int) *argv[2] - '0';
+      boost::gregorian::date newPersonDate = today + boost::gregorian::date_duration(temp);
+      printSchedule(newPersonDate, argv[1]);
+    }
+    else if (isdigit(*argv[1])) {
+      int temp = (int) *argv[1] - '0';
+      boost::gregorian::date newPersonDate = today + boost::gregorian::date_duration(temp);
+      printSchedule(newPersonDate, argv[2]);
     }
   }
   else {
