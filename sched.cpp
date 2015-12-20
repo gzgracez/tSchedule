@@ -269,7 +269,7 @@ int main(int argc, char *argv[])
       printSchedule(tomorrow);
     }
     else if (isdigit(*argv[1])) {
-      int temp = (int) *argv[1] - '0';
+      int temp = std::stoi(argv[1]);
       boost::gregorian::date newDate = today + boost::gregorian::date_duration(temp);
       printSchedule(newDate);
     }
@@ -279,12 +279,12 @@ int main(int argc, char *argv[])
   }
   else if (argc == 3) {
     if (isdigit(*argv[2])) {
-      int temp = (int) *argv[2] - '0';
+      int temp = std::stoi(argv[2]);
       boost::gregorian::date newPersonDate = today + boost::gregorian::date_duration(temp);
       printSchedule(newPersonDate, argv[1]);
     }
     else if (isdigit(*argv[1])) {
-      int temp = (int) *argv[1] - '0';
+      int temp = std::stoi(argv[1]);
       boost::gregorian::date newPersonDate = today + boost::gregorian::date_duration(temp);
       printSchedule(newPersonDate, argv[2]);
     }
